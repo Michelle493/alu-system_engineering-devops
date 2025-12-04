@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A script to configure my server to ssh wihtout password
+Host ubuntu@54.208.2.38
+	HostName 54.208.2.38
+	user ubuntu
+	identityFile ~/.ssh/school
+	passwordAuthentication no
