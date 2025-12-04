@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 – Page not found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg: #f2c6ff;
+      --bg-accent: #fbe6ff;
+      --text-main: #1b1024;
+      --text-muted: #4b355b;
+      --accent: #ff6f91;
+      --accent-dark: #e05476;
+      --pill: #fff5ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top left, #ffe9ff 0, var(--bg) 45%, #f0b7ff 100%);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      width: 100%;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .card {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: 2.5rem;
+      padding: 2.5rem 2.25rem;
+      border-radius: 32px;
+      background: linear-gradient(135deg, #ffffff 0, var(--bg-accent) 40%, #ffe9ff 100%);
+      box-shadow:
+        0 18px 45px rgba(53, 5, 88, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      overflow: hidden;
+    }
+
+    @media (max-width: 780px) {
+      .card {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.6rem;
+      }
+    }
+
+    .blob {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 20%, #ffd4ec, #f08ee1 55%, #d66cff 100%);
+      filter: blur(4px);
+      opacity: 0.33;
+      top: -80px;
+      right: -40px;
+      animation: float 9s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%   { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(-24px, 18px, 0) scale(1.05); }
+    }
+
+    .illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .illustration-circle {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ffeef9, #ffc8e8 45%, #ff9bd0 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 1.5rem;
+      box-shadow: 0 18px 40px rgba(203, 43, 118, 0.28);
+    }
+
+    .girl {
+      width: 70%;
+      max-width: 150px;
+    }
+
+    .girl img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .shadow {
+      width: 40%;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.06);
+      filter: blur(1px);
+      margin-top: 0.6rem;
+      align-self: center;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: var(--pill);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(6px);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 111, 145, 0.25);
+    }
+
+    .hero-row {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      margin-top: 0.8rem;
+    }
+
+    .code-404 {
+      font-size: clamp(3.6rem, 6vw, 5.1rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .hero-text {
+      max-width: 26rem;
+    }
+
+    .headline {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .subhead {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .magritte {
+      margin-top: 0.8rem;
+      font-size: 0.86rem;
+      font-style: italic;
+      color: #7a5a93;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0, var(--accent-dark) 100%);
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(229, 84, 118, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 36px rgba(229, 84, 118, 0.7);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--text-muted);
+      border: 1px dashed rgba(154, 115, 172, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+    }
+
+    .btn span {
+      margin-left: 0.3rem;
+    }
+
+    .hint {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      color: #7f5c99;
+      max-width: 24rem;
+    }
+
+    @media (max-width: 600px) {
+      .illustration-circle {
+        width: 210px;
+        height: 210px;
+      }
+
+      .card {
+        border-radius: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrapper">
+    <section class="card" aria-labelledby="page-title">
+      <div class="blob" aria-hidden="true"></div>
+
+      <div class="illustration" aria-hidden="true">
+        <div>
+          <div class="illustration-circle">
+            <div class="girl">
+              <img src="404_girl.png" alt="Confused character scratching head">
+            </div>
+          </div>
+          <div class="shadow"></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          <span>Lost in the internet void</span>
+        </div>
+
+        <div class="hero-row">
+          <div class="code-404" aria-hidden="true">404</div>
+          <div class="hero-text">
+            <h1 class="headline" id="page-title">Well, this is awkward.</h1>
+            <p class="subhead">
+              The page you were looking for packed its bags and snuck off.
+              Let’s get you back to somewhere that actually exists.
+            </p>
+          </div>
+        </div>
+
+        <p class="magritte">
+          Ceci n'est pas une page &mdash; just a very dramatic 404.
+        </p>
+
+        <div class="actions">
+          <a href="/" class="btn btn-primary">
+            ⬅ Back home
+          </a>
+
+          <button class="btn btn-outline" onclick="window.history.back()">
+            🔁 Go to previous page
+          </button>
+        </div>
+
+        <p class="hint">
+          If you followed a link here, it might be broken or out of date.
+          Double-check the URL, or head back home and start fresh.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
