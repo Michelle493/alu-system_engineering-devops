@@ -1,26 +1,14 @@
 #!/usr/bin/env bash
-# A script that Configures my Nginx server so that /redirect_me is redirecting to another page
+# Configures an Nginx server so that /redirect_me redirects to another page
+# The redirection is a "301 Moved Permanently"
 
-sudo apt-get update -y
-sudo apt-get install nginx -y
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
 
-echo "Holberton School" > /var/www/html/index.html
+# Add redirect rule for /redirect_me using string replacement (more reliable)
+new_string="server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://cinemora-cyan.vercel.app;\n\t}\n"
+sudo sed -i "s|server_name _;|$new_string|" /etc/nginx/sites-available/default
 
-config=\
-"server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
-	root /var/www/html;
-	index index.html index.htm index.nginx-debian.html;
-	server_name _;
-	location / {
-		try_files \$uri \$uri/ =404;
-	}
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-}
-"
-
-echo "$config" > /etc/nginx/sites-available/default
 sudo service nginx restart
