@@ -8,7 +8,6 @@ sudo ufw allow 'Nginx HTTP'
 echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
 
 # Add redirect rule for /redirect_me using string replacement (more reliable)
-new_string="server_name _;\n\tlocation /redirect_me {\n\t\treturn 301 https://cinemora-cyan.vercel.app;\n\t}\n"
-sudo sed -i "s|server_name _;|$new_string|" /etc/nginx/sites-available/default
+sudo sed -i '/server_name _/a rewrite ^/redirect_me/ https://www.youtube.com permanent;\n' /etc/nginx/sites-available/default
 
 sudo service nginx restart
