@@ -1,1 +1,28 @@
 
+#!/usr/bin/env bash
+
+#this will  Update the package list
+sudo apt-get update -y
+
+# this will Install UFW (Uncomplicated Firewall)
+sudo apt-get install -y ufw
+
+# Block all incoming connections by default
+sudo ufw default deny incoming
+
+# Allow all outgoing connections
+sudo ufw default allow outgoing
+
+# Allow SSH as a precuation so as no to myself out
+sudo ufw allow 22/tcp
+
+# Allow web traffic (HTTP and HTTPS)
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# Show the firewall rules before enabling UFW
+sudo ufw show added
+
+# Enable the firewall without asking for confirmation
+echo "y" | sudo ufw enable
+
